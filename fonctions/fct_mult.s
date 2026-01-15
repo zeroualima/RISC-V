@@ -16,8 +16,8 @@ uint64_t mult(uint64_t x, uint64_t y);
   Pas d'espace réservé dans la pile pour d'éventuels paramètres de fonction appelée [np=0 voir notation du cours],
   ni pour sauvegarder ra ni aucun registre [nr=0 voir notation du cours],
   on place la variable locale dans la pile [nv=1 voir notation du cours]
-  => La fonction doit réserver dans la pile (np+nv+nr)*4 octets, ici 4 octets pour la variable locale res
-  => Pile + 4
+  => La fonction doit réserver dans la pile (np+nv+nr)*8 octets, ici 8 octets pour la variable locale res
+  => Pile + 8
 
 DEBUT DU CONTEXTE
   Fonction :
@@ -30,7 +30,7 @@ FIN DU CONTEXTE */
 
 mult:
     /* on reserve la place nécessaire dans la pile */
-    addi sp, sp, -4
+    addi sp, sp, -8
     /* res = 0; */
     sd   zero, 0(sp) /* ici, 0(sp) n'est pas une étiquette mais un registre donc pas besoin d'un 3e argument pour le calcul de l'adresse (elle est déjà donnée: sp + 0) */
     /* while (y != 0) { */
@@ -49,6 +49,6 @@ fin_while:
     /* return res; */
     ld   a0, 0(sp)
 mult_debut_epilogue:
-    addi sp, sp, 4 /* on libère la pile */
+    addi sp, sp, 8 /* on libère la pile */
     ret
 /* On peut remarquer que le contexte imposé ici utilise la pile pour la variable locale alors que la fonction est une fonction feuille. Par la suite, on placera les variables locales en pile que si la fonction est non-feuille (contient un appel à une sous-fonction) ou si le contexte donné l'impose. */

@@ -38,7 +38,7 @@ Contexte :
   l1            : registre a1    # paramètre de type (struct cellule_t **)
   l2            : registre a2    # paramètre de type (struct cellule_t **)
   fictif2.suiv  : pile *(sp+24)  # champ de type (cellule_t *)
-  fictif2.val   : pile *(sp+16)   # champ de type (int64_t)
+  fictif2.val   : pile *(sp+16)  # champ de type (int64_t)
   fictif1.suiv  : pile *(sp+8)   # champ de type (cellule_t *)
   fictif1.val   : pile *(sp+0)   # champ de type (int64_t)
 FIN DU CONTEXTE */

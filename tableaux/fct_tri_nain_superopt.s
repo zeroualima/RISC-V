@@ -30,7 +30,7 @@ DEBUT DU CONTEXTE
 Fonction :
     tri_nain_superopt : feuille
 Contexte :
-#   À compléter pour vous, mais laissez tout en commentaire (après '#')
+#   À compléter pour vous, mais laissez tout en commentaire (après '#'), sauf les paramètres
 FIN DU CONTEXTE */
 tri_nain_superopt:
 tri_nain_superopt_fin_prologue:
