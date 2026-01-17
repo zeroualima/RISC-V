@@ -13,14 +13,28 @@ uint64_t somme(void)
     .globl somme, entry
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    somme : feuille
 Contexte :
-    À compléter
+    res : registre t0
+    i : registre t1
 FIN DU CONTEXTE */
 entry:
 somme:
 somme_fin_prologue:
-/* A compléter */
+    /* uint64_t i; RIEN A FAIRE! */
+    /* uint64_t res = 0; */
+    li t0, 0
+    li t1, 1
+    li t2, 10
+    /* for (i = 1; i <= 10; i++) { */
+loop:
+    blt t2, t1, endloop
+    /* res = res + i; */
+    add t0, t0, t1
+    addi t1, t1, 1
+    j loop
+endloop:
+    mv a0, t0
 somme_debut_epilogue:
     /* éteindre la machine virtuelle QEMU. */
 eteindre_qemu:
