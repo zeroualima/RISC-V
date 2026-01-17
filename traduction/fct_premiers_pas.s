@@ -87,6 +87,10 @@ premiers_pas_fin_prologue:
     mv   t0, zero
 /*  ===> Premier extrait à traduire : boucle while */
 /*  while(i < taille - 1) { */
+while:
+	addi t1, t0, 1
+	bge t1, a1, fin_while
+	j premiere_traduction
 premiere_traduction:
     /* ===> DEBUT DU CORPS DE LA BOUCLE WHILE */
     slli t2, t0, 2
@@ -109,12 +113,16 @@ premiere_traduction:
 /*      if (i > 0) { */
 /*          i = i - 1; */
 /*      } */
+	blez t0, ifefi
+	addi t0, t0, -1
 deuxieme_traduction:
     j    ifefi
 fie:
     addi t0, t0, 1
 ifefi:
+	j while
     /* ===> FIN DU CORPS DE LA BOUCLE WHILE */
+fin_while:
 premiers_pas_debut_epilogue:
     ret
 	.section	.rodata
