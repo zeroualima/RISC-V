@@ -17,6 +17,7 @@ void sommeMem(void)
 Fonction :
     sommeMem : feuille
 Contexte :
+    res : mémoire
     i : registre t1
 FIN DU CONTEXTE */
 entry:
