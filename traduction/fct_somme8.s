@@ -17,14 +17,33 @@ uint8_t somme8(void)
     .globl somme8, entry
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    somme8 : feuille
 Contexte :
-    À compléter
+    res8 : mémoire
+    i : registre t0
 FIN DU CONTEXTE */
 entry:
 somme8:
 somme8_fin_prologue:
-/* A compléter */
+    # res8 = 0;
+    la t1, res8
+    li t2, 0
+    sb t2, 0(t1)
+    li t0, 1 # i = 1
+# for (i = 1; i <= 30; i++) {
+loop:
+    li t2, 30
+    bltu t2, t0, endloop
+    la t1, res8
+    lbu t2, 0(t1)
+    add t2, t2, t0
+    sb t2, 0(t1)
+    addi t0, t0, 1
+    j loop
+endloop:
+    la t1, res8
+    lbu t2, 0(t1)
+    mv a0, t2
 somme8_debut_epilogue:
     /* éteindre la machine virtuelle QEMU. */
 eteindre_qemu:
@@ -40,3 +59,5 @@ eteindre_qemu:
   La variable globale res8 étant définie dans ce fichier, il est nécessaire de
   la définir dans la section .data du programme assembleur.
 */
+    res8:
+        .byte 42
