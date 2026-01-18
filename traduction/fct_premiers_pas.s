@@ -90,7 +90,6 @@ premiers_pas_fin_prologue:
 while:
 	addi t1, t0, 1
 	bge t1, a1, fin_while
-	j premiere_traduction
 premiere_traduction:
     /* ===> DEBUT DU CORPS DE LA BOUCLE WHILE */
     slli t2, t0, 2
