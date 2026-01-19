@@ -26,17 +26,15 @@ sommeMem_fin_prologue:
 sommeMem_debut_epilogue:
     /* éteindre la machine virtuelle QEMU. */
 eteindre_qemu:
-    li a0,0x100000
-    li a1,0x5555
-    sw a1,0(a0)
+    li   a0, 0x100000
+    li   a1, 0x5555
+    sw   a1, 0(a0)
     ret # pour l'infrastructure d'évaluation automatique
 
 
     .data
-    .globl res
+    .weak res # A la place de .globl, pour l'évaluation automatique avec gdb
 /* uint64_t res;
   La variable globale res étant définie dans ce fichier, il est nécessaire de
   la définir dans la section .data du programme assembleur.
-  On utilisera l'attribut .weak (au lieu de .globl) pour éviter des erreurs 
-  de linkage si res est déjà définie dans un autre fichier (par exemple decls.c).
 */

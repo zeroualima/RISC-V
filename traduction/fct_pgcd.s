@@ -39,8 +39,7 @@ pgcd_fin_prologue:
 while:
     beq  t0, t1, fin_while /* Saut à fin si i == j */
     /* if (i < j) {  */
-    sltu t2, t0, t1 /* Le registre t2 est utilisé pour stocker le résultat du test i < j */
-    beqz t2, else /* pseudo-instruction, on aurait pu utiliser beq t2, zero, else */
+    bge t0, t1, else /* Le registre t2 est utilisé pour stocker le résultat du test i < j */
     /* j = j - i;  */
     sub  t1, t1, t0
     j    fin_if
@@ -60,7 +59,7 @@ pgcd_debut_epilogue:
     sans aucune bibliothèque, ni affichage, ni système d'exploitation.
     Pour terminer proprement, nous allons éteindre la machine virtuelle QEMU. */
 eteindre_qemu:
-    li a0,0x100000
-    li a1,0x5555
-    sw a1,0(a0)
+    li   a0, 0x100000
+    li   a1, 0x5555
+    sw   a1, 0(a0)
     ret
