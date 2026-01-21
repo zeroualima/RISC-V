@@ -18,3 +18,6 @@ tri_nain_opt: tri_nain_opt.o fct_tri_nain_opt.o
 tri_nain_superopt: tri_nain_superopt.o fct_tri_nain_superopt.o
 
 comparer_nains: comparer_nains.o fct_tri_nain.o fct_tri_nain_opt.o fct_tri_nain_superopt.o
+
+fct_% : fct_%.s %.c
+	@echo "Il faut utiliser \"make $*\" et non \"make fct_$*\"."

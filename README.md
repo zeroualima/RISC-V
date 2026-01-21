@@ -49,6 +49,8 @@ Niveau 3 :
 [![tri_nain_superopt status](https://CEP_deploy.pages.ensimag.fr/ILM_TP_G6_2025_2026/eval/zerouama_eval/tri_nain_superopt.svg)](https://CEP_deploy.pages.ensimag.fr/ILM_TP_G6_2025_2026/eval/zerouama_eval/tri_nain_superopt.log)
 
 
+[![Performance du tri_nain_superopt](https://CEP_deploy.pages.ensimag.fr/competition/zerouama.svg)](https://CEP_deploy.pages.ensimag.fr/competition/zerouama.time)
+[Classement pour tri_nain_superopt](https://CEP_deploy.pages.ensimag.fr/competition/resultats.txt)
 ## listes
 
 Niveau 2 : 

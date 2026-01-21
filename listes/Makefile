@@ -14,4 +14,3 @@ inverse_liste: inverse_liste.o fct_inverse_liste.o
 decoupe_liste: decoupe_liste.o fct_decoupe_liste.o
 
 palin: palin.o fct_palin.o
-
