@@ -86,12 +86,12 @@ premiers_pas:
 premiers_pas_fin_prologue:
     mv   t0, zero
 /*  ===> Premier extrait à traduire : boucle while */
-/*  while(i < taille - 1) { */
-while:
-	addi t1, t0, 1
-	bge t1, a1, fin_while
 premiere_traduction:
     /* ===> DEBUT DU CORPS DE LA BOUCLE WHILE */
+	/*  while(i < taille - 1) { */
+	while:
+		addi t1, t0, 1
+		bge t1, a1, fin_while
     slli t2, t0, 2
     add  t2, a0, t2
     lw   t3, 0(t2)
@@ -108,13 +108,14 @@ premiere_traduction:
     slli  t2, t0, 2
     add  t2, a0, t2
     sw   t1, 4(t2)
-/*  ===> Deuxième extrait à traduire : test */
-/*      if (i > 0) { */
-/*          i = i - 1; */
-/*      } */
+
+deuxieme_traduction:
+	/*  ===> Deuxième extrait à traduire : test */
+	/*      if (i > 0) { */
+	/*          i = i - 1; */
+	/*      } */
 	blez t0, ifefi
 	addi t0, t0, -1
-deuxieme_traduction:
     j    ifefi
 fie:
     addi t0, t0, 1
