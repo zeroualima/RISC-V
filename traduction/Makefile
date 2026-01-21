@@ -28,5 +28,5 @@ premiers_pas.o: fct_premiers_pas.o
 	cp fct_premiers_pas.o premiers_pas.o
 premiers_pas: premiers_pas.o
 
-#fct_% : fct_%.s %.c
-#	@echo "Il faut utiliser \"make $*\" et non \"make fct_$*\"."
+fct_% : fct_%.s %.c
+	@echo "Il faut utiliser \"make $*\" et non \"make fct_$*\"."
