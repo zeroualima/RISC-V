@@ -21,10 +21,10 @@ FIN DU CONTEXTE */
 hello:
   /* on reserve la place nécessaire dans la pile */
   addi sp, sp, -1*8 # ra  : pile *(sp+0)
-  sd ra, 1*8(sp)
+  sd ra, 0*8(sp)
 hello_fin_prologue:
   jal affiche_HelloWorld
 hello_debut_epilogue:
-  ld ra, 1*8(sp)
+  ld ra, 0*8(sp)
   addi sp, sp, 8
   ret
