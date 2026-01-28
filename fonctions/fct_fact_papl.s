@@ -17,12 +17,14 @@ uint64_t fact_papl(uint64_t n)
     /* uint64_t fact_papl(uint64_t n) */
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    fact_papl : non feuille
 Contexte :
-    À compléter
+    n : registre a0
+    tmp : registe t0
+    ra  : pile *(sp+0)
 FIN DU CONTEXTE */
 fact_papl:
-/* A compléter */
+    addi sp, sp, -4*8 # n, ra
 fact_papl_fin_prologue:
 fact_papl_debut_epilogue:
     ret

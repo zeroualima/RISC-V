@@ -15,16 +15,17 @@ Contexte :
     a : registre a0
     b : registre a1
     x : registre a2
+    ra  : pile *(sp+3)
 FIN DU CONTEXTE */
 affine:
     /* on reserve la place nécessaire dans la pile */
     addi sp, sp, -4*8 # a, b, x, ra
-affine_fin_prologue:
     # Chargement des parametres dans la pile
     sd ra, 3*8(sp)
     sd a2, 2*8(sp)
     sd a1, 1*8(sp)
     sd a0, 0*8(sp)
+affine_fin_prologue:
     # preparation des arguments
     ld a0, 2*8(sp) # preparer x pour mult
     ld a1, 0*8(sp) # preparer a pour mult

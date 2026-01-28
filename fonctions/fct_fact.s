@@ -17,14 +17,15 @@ Fonction :
     fact : non feuille
 Contexte :
     n : registre a0
+    ra  : pile *(sp+1)
 FIN DU CONTEXTE */
 fact:
     /* on reserve la place nécessaire dans la pile */
     addi sp, sp, -2*8 # n, ra
-fact_fin_prologue:
-    # Chargement des parametres dans la pile
     sd ra, 1*8(sp)
     sd a0, 0*8(sp)
+fact_fin_prologue:
+    # Chargement des parametres dans la pile
     li t0, 1
     sltu t1, t0, a0 /* Le registre t1 est utilisé pour stocker le résultat du test n > 1 */
     bnez t1, 1f
