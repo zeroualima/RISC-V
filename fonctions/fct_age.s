@@ -25,6 +25,7 @@ age_fin_prologue:
     li t0, 2000
     sub t1, t0, a0
     sd t1, 0(sp)
+    mv a0, t1
 age_debut_epilogue:
     addi sp, sp, 8 /* on libère la pile */
     ret
