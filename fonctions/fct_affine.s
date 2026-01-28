@@ -19,11 +19,11 @@ FIN DU CONTEXTE */
 affine:
   /* on reserve la place nécessaire dans la pile */
   addi sp, sp, -4*8 # a, b, x, ra
-  sd ra, 4*8(sp)
-  sd a2, 2*8(sp)
-  sd a1, 1*8(sp)
-  sd a0, 0*8(sp)
 affine_fin_prologue:
+    sd ra, 4*8(sp)
+    sd a2, 2*8(sp)
+    sd a1, 1*8(sp)
+    sd a0, 0*8(sp)
     ld a0, 2*8(sp) # preparer x pour mult
     ld a1, 0*8(sp) # preparer a pour mult
     jal mult
