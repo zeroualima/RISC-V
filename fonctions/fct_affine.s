@@ -21,7 +21,7 @@ affine:
     addi sp, sp, -4*8 # a, b, x, ra
 affine_fin_prologue:
     # Chargement des parametres dans la pile
-    sd ra, 4*8(sp)
+    sd ra, 3*8(sp)
     sd a2, 2*8(sp)
     sd a1, 1*8(sp)
     sd a0, 0*8(sp)
@@ -34,6 +34,6 @@ affine_fin_prologue:
     # return mult(x, a) + b;
     add a0, a0, a1 # addition et retour
 affine_debut_epilogue:
-    ld ra, 4*8(sp)
+    ld ra, 3*8(sp)
     addi sp, sp, 4*8
     ret
