@@ -21,10 +21,10 @@ Fonction :
 Contexte :
     n : registre a0
     tmp : registe t0
-    ra  : pile *(sp+0)
+    ra  : pile *(sp+2)
 FIN DU CONTEXTE */
 fact_papl:
-    addi sp, sp, -4*8 # n, ra
+    addi sp, sp, -3*8 # tmp, n, ra
 fact_papl_fin_prologue:
 fact_papl_debut_epilogue:
     ret
