@@ -26,6 +26,7 @@ FIN DU CONTEXTE */
 fact_papl:
     addi sp, sp, -4*8 # tmp, n, ra
     sd ra, 3*8(sp)
+    sd a0, 2*8(sp)
 fact_papl_fin_prologue:
     li t0, 1
     ld a0, 2*8(sp) # a0 = n
