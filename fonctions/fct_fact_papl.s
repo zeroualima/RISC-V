@@ -19,12 +19,22 @@ uint64_t fact_papl(uint64_t n)
 Fonction :
     fact_papl : non feuille
 Contexte :
-    n : registre a0
-    tmp : registe t0
-    ra  : pile *(sp+2)
+    ra  : pile *(sp+24)
+    n : pile *(sp+16); registre a0
+    tmp : pile *(sp+0) / *(sp+8)
 FIN DU CONTEXTE */
 fact_papl:
-    addi sp, sp, -3*8 # tmp, n, ra
+    addi sp, sp, -4*8 # tmp, n, ra
+    sd ra, 3*8(sp)
 fact_papl_fin_prologue:
+    li t0, 1
+    sltu t1, t0, a0 /* Le registre t1 est utilisé pour stocker le résultat du test n > 1 */
+    bnez t1, 1f # Si n > 1, Jump vers 1
+    li a0, 1 # return 1;
+1: /* else */
+
+
 fact_papl_debut_epilogue:
+    ld ra, 3*8(sp)
+    addi sp, sp, 4*8
     ret

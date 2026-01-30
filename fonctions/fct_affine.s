@@ -12,10 +12,10 @@ uint64_t affine(uint64_t a, uint64_t b, uint64_t x)
 Fonction :
     affine : non feuille
 Contexte :
-    a : pile *(sp+0)
-    b : pile *(sp+1)
-    x : pile *(sp+2)
-    ra : pile *(sp+3)
+    ra : pile *(sp+24)
+    x : pile *(sp+16); registre a2
+    b : pile *(sp+8); registre a1
+    a : pile *(sp+0); registre a0
 FIN DU CONTEXTE */
 affine:
     /* on reserve la place nécessaire dans la pile */
