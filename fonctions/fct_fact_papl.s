@@ -28,12 +28,28 @@ fact_papl:
     sd ra, 3*8(sp)
 fact_papl_fin_prologue:
     li t0, 1
-    sltu t1, t0, a0 /* Le registre t1 est utilisé pour stocker le résultat du test n > 1 */
-    bnez t1, 1f # Si n > 1, Jump vers 1
+    ld a0, 2*8(sp) # a0 = n
+    bgt a0, t0, 1f
+    /* if */
     li a0, 1 # return 1;
+    j fact_papl_debut_epilogue
 1: /* else */
-
-
+    ld a0, 2*8(sp) # a0 = n
+    addi a0, a0, -1
+    jal fact_papl
+    # a0 = fact_papl(n-1)
+    ld t0, 2*8(sp) # t0 = n
+    mul t1, t0, a0 # t0 = n*fact_papl(n-1) [0; 63]
+    mulh t2, t0, a0 # t0 = n*fact_papl(n-1) [64; 127]
+    sd t1, 0*8(sp) # uint128_t tmp = (uint128_t)n*fact_papl(n-1); [0; 63]
+    sd t2, 1*8(sp) # uint128_t tmp = (uint128_t)n*fact_papl(n-1); [64; 127]
+    # t2 = tmp >> 64
+    blez t2, 2f # Jumps to 2 if (tmp >> 64) <= 0
+    /* if */
+    ld a0, 2*8(sp)
+    jal erreur_fact
+2:
+    ld a0, 0*8(sp)
 fact_papl_debut_epilogue:
     ld ra, 3*8(sp)
     addi sp, sp, 4*8
