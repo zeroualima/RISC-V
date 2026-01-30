@@ -16,7 +16,7 @@ uint64_t fact(uint64_t n)
 Fonction :
     fact : non feuille
 Contexte :
-    n : registre a0
+    n : pile *(sp+0)
     ra  : pile *(sp+1)
 FIN DU CONTEXTE */
 fact:
