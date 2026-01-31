@@ -21,14 +21,14 @@ uint16_t val_binaire(uint8_t b15, uint8_t b14, uint8_t b13, uint8_t b12,
 Fonction :
     val_binaire : feuille
 Contexte :
-    b15 : pile *(sp+0)
-    b14 : pile *(sp+8)
-    b13 : pile *(sp+16)
-    b12 : pile *(sp+32)
-    b11 : pile *(sp+40)
-    b10 : pile *(sp+48)
-    b9 : pile *(sp+56)
-    b8 : pile *(sp+64)
+    b15 : pile *(sp+0); registre a0
+    b14 : pile *(sp+8); registre a1
+    b13 : pile *(sp+16); registre a2
+    b12 : pile *(sp+32); registre a3
+    b11 : pile *(sp+40); registre a4
+    b10 : pile *(sp+48); registre a5
+    b9 : pile *(sp+56); registre a6
+    b8 : pile *(sp+64); registre a7
     b7 : pile *(sp+72)
     b6 : pile *(sp+80)
     b5 : pile *(sp+88)
@@ -41,17 +41,17 @@ FIN DU CONTEXTE */
 val_binaire:
     /* on reserve la place nécessaire dans la pile pour b15, ..., b8 */
     /* pas de ra car on appelle aucune fonction */
-    addi sp, sp, -8*8
+    # addi sp, sp, -8*8
 val_binaire_fin_prologue:
     /* a0, ..., a7 et *(sp+72), ..., *(sp+128) contiennent deja les valeurs des arguments */
-    slli a0, a0, 15 # a0 = b15
+    slli a0, a0, 15 # a0 = b15 << 15
     slli a1, a1, 14
     slli a2, a2, 13
     slli a3, a3, 12
     slli a4, a4, 11
     slli a5, a5, 10
     slli a6, a6, 9
-    slli a7, a7, 8 # a7 = b8
+    slli a7, a7, 8 # a7 = b8 << 8
 
     lbu t0, 8*8(sp) # t0 = b7
     lbu t1, 9*8(sp)
@@ -88,5 +88,5 @@ val_binaire_fin_prologue:
     slli t0, t0, 15
     or a0, a0, t0
 val_binaire_debut_epilogue:
-    addi sp, sp, 8*8
+    # addi sp, sp, 8*8
     ret
