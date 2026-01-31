@@ -21,14 +21,14 @@ uint16_t val_binaire(uint8_t b15, uint8_t b14, uint8_t b13, uint8_t b12,
 Fonction :
     val_binaire : feuille
 Contexte :
-    b15 : pile *(sp+0); registre a0
-    b14 : pile *(sp+8); registre a1
-    b13 : pile *(sp+16); registre a2
-    b12 : pile *(sp+32); registre a3
-    b11 : pile *(sp+40); registre a4
-    b10 : pile *(sp+48); registre a5
-    b9 : pile *(sp+56); registre a6
-    b8 : pile *(sp+64); registre a7
+    b15 : pile *(sp+0)
+    b14 : pile *(sp+8)
+    b13 : pile *(sp+16)
+    b12 : pile *(sp+32)
+    b11 : pile *(sp+40)
+    b10 : pile *(sp+48)
+    b9 : pile *(sp+56)
+    b8 : pile *(sp+64)
     b7 : pile *(sp+72)
     b6 : pile *(sp+80)
     b5 : pile *(sp+88)
