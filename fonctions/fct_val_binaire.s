@@ -42,7 +42,7 @@ val_binaire:
     /* on reserve la place nécessaire dans la pile pour b15, ..., b8 */
     /* pas de ra car on appelle aucune fonction */
     addi sp, sp, -8*8
-
+val_binaire_fin_prologue:
     /* a0, ..., a7 et *(sp+72), ..., *(sp+128) contiennent deja les valeurs des arguments */
     slli a0, a0, 15 # a0 = b15 << 15
     slli a1, a1, 14
@@ -87,8 +87,6 @@ val_binaire:
     lbu t0, 15*8(sp) # t0 = b0
     slli t0, t0, 15
     or a0, a0, t0
-
-    addi sp, sp, 8*8
-val_binaire_fin_prologue:
 val_binaire_debut_epilogue:
+    addi sp, sp, 8*8
     ret
