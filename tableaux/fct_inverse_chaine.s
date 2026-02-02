@@ -26,5 +26,18 @@ Contexte :
 FIN DU CONTEXTE */
 inverse_chaine:
 inverse_chaine_fin_prologue:
+    mv t1, a1 # dep = taille
+    addi t1, t1, -1 # dep = taille - 1
+while:
+    blez t1, fin_while
+    lbu t0, 0(a0) # tmp = *ptr;
+    add t2, a0, t1 # t2 = ptr + dep
+    lbu t3, 0(t2) # t3 = ptr[dep]
+    sb t3, 0(a0) # *ptr = ptr[dep];
+    sb t0, 0(t2) # ptr[dep] = tmp;
+    addi t1, t1, -2 # dep = dep - 2;
+    addi a0, a0, 1 # ptr++;
+    j while
+fin_while:
 inverse_chaine_debut_epilogue:
     ret
