@@ -22,12 +22,12 @@ void tri_min(int64_t tab[], uint64_t taille)
 Fonction :
     tri_min : feuille
 Contexte :
-    tab : registre a0
-    taille : registre a1
-    i : registre t0
-    j : registre t1
-    ix_min : registre t2
-    tmp : registre t3
+    tab     : registre a0
+    taille  : registre a1
+    i       : registre t0
+    j       : registre t1
+    ix_min  : registre t2
+    tmp     : registre t3
 FIN DU CONTEXTE */
 tri_min:
 tri_min_fin_prologue:
