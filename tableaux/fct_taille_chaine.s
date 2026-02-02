@@ -15,7 +15,7 @@ uint64_t taille_chaine(const char *chaine)
 Fonction :
     taille_chaine : feuille
 Contexte :
-    chaine : pile *(sp+1); registre a0
+    chaine : pile *(sp+8); registre a0
     taille : pile *(sp+0)
 FIN DU CONTEXTE */
 
