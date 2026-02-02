@@ -16,23 +16,20 @@ Fonction :
     taille_chaine : feuille
 Contexte :
     chaine : registre a0
-    taille : pile *(sp+0)
+    taille : registre t0
 FIN DU CONTEXTE */
 
 taille_chaine:
-    addi sp, sp, -1*8
 taille_chaine_fin_prologue:
-    sd zero, 0*8(sp) # uint64_t taille = 0;
+    # uint64_t taille = 0;
+    li t0, 0 # mv t0, zero (Meme chose)
 while: 
-    ld t0, 0*8(sp) # t0 = taille
     add t1, a0, t0 # t1 = &(chaine + taille)  
     lbu t2, 0(t1) # t2 = chaine[taille]
     beqz t2, fin_while
     addi t0, t0, 1
-    sd t0, 0*8(sp)
     j while
 fin_while:
-    ld a0, 0*8(sp)
+    mv a0, t0
 taille_chaine_debut_epilogue:
-    addi sp, sp, 1*8
     ret
