@@ -36,22 +36,26 @@ while:
     addi t2, a1, -1
     bge t0, t2, fin_while
 
+    # Preparation de tab[i]
     li t2, 8
     mul t2, t2, t0
     add t2, t2, a0 # t2 = tab + 8*i
     ld t3, 0(t2) # t3 = tab[i]
 
+    # Preparation de tab[i + 1]
     li t4, 8
     mul t4, t4, t0
     addi t4, t4, 8
     add t4, t4, a0 # t4 = tab + 8*(i + 1)
     ld t5, 0(t4) # t5 = tab[i + 1]
 
+    /* if (tab[i] > tab[i+1]) */
     ble t3, t5, else1
     mv t1, t3 # tmp = tab[i]
     sd t5, 0(t2) # tab[i] = tab[i + 1]
     sd t1, 0(t4) # tab[i + 1] = tmp
-
+    
+    /* if (i > 0) */
     blez t0, else2
     addi t0, t0, -1
     j while
