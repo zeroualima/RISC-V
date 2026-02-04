@@ -51,7 +51,9 @@ while:
 
     /* if (tab[i] > tab[i+1]) */
     ble t3, t5, else1
+    ld t3, 0(t2) # t3 = tab[i]
     mv t1, t3 # tmp = tab[i]
+    ld t5, 0(t4) # t5 = tab[i + 1]
     sd t5, 0(t2) # tab[i] = tab[i + 1]
     sd t1, 0(t4) # tab[i + 1] = tmp
     
