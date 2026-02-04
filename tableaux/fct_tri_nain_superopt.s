@@ -36,8 +36,8 @@ Contexte :
 #   i       : registre t0
 #   tmp     : registre t1
 #   &tab[i] : registre t2
-#   tab[i]  : registre t3
-#   tab[i+1]: registre t4
+#   tab[i]  : registre t3; mémoire
+#   tab[i+1]: registre t4; mémoire
 #   taille - 1 : registre t5
 FIN DU CONTEXTE */
 tri_nain_superopt:

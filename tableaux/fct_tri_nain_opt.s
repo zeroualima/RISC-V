@@ -32,8 +32,8 @@ Contexte :
     i       : registre t0
     tmp     : registre t1
     &tab[i] : registre t2
-    tab[i]  : registre t3
-    tab[i+1]: registre t4
+    tab[i]  : registre t3; mémoire
+    tab[i+1]: registre t4; mémoire
 FIN DU CONTEXTE */
 tri_nain_opt:
 tri_nain_opt_fin_prologue:
