@@ -33,7 +33,7 @@ Contexte :
 #   À compléter pour vous, mais laissez tout en commentaire (après '#'), sauf les paramètres
     tab     : registre a0
     taille  : registre a1
-#   i       : registre t0
+#   8 * i + tab : registre t0
 #   tmp     : registre t1
 #   &tab[i] : registre t2
 #   tab[i]  : registre t3; mémoire
@@ -42,11 +42,11 @@ Contexte :
 FIN DU CONTEXTE */
 tri_nain_superopt:
 tri_nain_superopt_fin_prologue:
-    mv t0, a0 # t0 = 8 * i + tab
-    li t6, 8
+    li t0, -8
     addi t5, a1, -1
-    mul t5, t5, t6 
-    add t5, t5, a0 # t5 = 8 * (taille - 1) + tab
+    mul t5, t5, t0 
+    sub t5, a0, t5 # t5 = tab + 8 * (taille - 1)
+    add t0, t0, a0
 else1:
     addi t0, t0, 8
 while:
@@ -61,7 +61,7 @@ while:
     sd t4, 0(t0) # tab[i] = tab[i + 1]
     sd t3, 1*8(t0) # tab[i + 1] = tmp
     
-    /* if (i > 0) */
+    /* if (i*8 + tab > tab) */
     ble t0, a0, while
     addi t0, t0, -8
     j while
