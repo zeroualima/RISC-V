@@ -32,15 +32,15 @@ Contexte :
     i       : registre t0
     tmp     : registre t1
     &tab[i] : registre t2
-    tab[i]  : mémoire
-    tab[i+1]: mémoire
+    tab[i]  : registre t3
+    tab[i+1]: registre t4
 FIN DU CONTEXTE */
 tri_nain_opt:
 tri_nain_opt_fin_prologue:
     li t0, 0
 while:
-    addi t2, a1, -1
-    bge t0, t2, fin_while
+    addi t3, a1, -1
+    bge t0, t3, fin_while
 
     # Preparation de tab[i]
     li t2, 8

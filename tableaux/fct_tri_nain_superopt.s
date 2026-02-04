@@ -31,8 +31,44 @@ Fonction :
     tri_nain_superopt : feuille
 Contexte :
 #   À compléter pour vous, mais laissez tout en commentaire (après '#'), sauf les paramètres
+    tab     : registre a0
+    taille  : registre a1
+#   i       : registre t0
+#   tmp     : registre t1
+#   &tab[i] : registre t2
+#   tab[i]  : registre t3
+#   tab[i+1]: registre t4
+#   taille - 1 : registre t5
 FIN DU CONTEXTE */
 tri_nain_superopt:
 tri_nain_superopt_fin_prologue:
+    li t0, 0
+    li t6, 8
+    addi t5, a1, -1
+while:
+    bge t0, t5, fin_while
+
+    # Preparation de &tab[i]
+    mul t2, t6, t0
+    add t2, t2, a0 # t2 = &tab[i] = tab + 8*i
+
+    ld t3, 0(t2) # t3 = tab[i]
+    ld t4, 1*8(t2) # t4 = tab[i + 1]
+
+    /* if (tab[i] > tab[i+1]) */
+    ble t3, t4, else1
+    sd t4, 0(t2) # tab[i] = tab[i + 1]
+    sd t3, 1*8(t2) # tab[i + 1] = tmp
+    
+    /* if (i > 0) */
+    blez t0, else2
+    addi t0, t0, -1
+    j while
+else2:
+    j while
+else1:
+    addi t0, t0, 1
+    j while
+fin_while:
 tri_nain_superopt_debut_epilogue:
     ret
