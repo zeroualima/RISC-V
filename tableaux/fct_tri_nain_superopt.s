@@ -61,10 +61,8 @@ while:
     sd t3, 1*8(t2) # tab[i + 1] = tmp
     
     /* if (i > 0) */
-    blez t0, else2
+    blez t0, while
     addi t0, t0, -1
-    j while
-else2:
     j while
 else1:
     addi t0, t0, 1

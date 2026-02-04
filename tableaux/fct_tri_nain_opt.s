@@ -39,8 +39,8 @@ tri_nain_opt:
 tri_nain_opt_fin_prologue:
     li t0, 0
 while:
-    addi t3, a1, -1
-    bge t0, t3, fin_while
+    addi t5, a1, -1
+    bge t0, t5, fin_while
 
     # Preparation de tab[i]
     li t2, 8
