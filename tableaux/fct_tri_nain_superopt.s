@@ -42,31 +42,30 @@ Contexte :
 FIN DU CONTEXTE */
 tri_nain_superopt:
 tri_nain_superopt_fin_prologue:
-    li t0, 0
+    li t0, 0 # t0 = 8 * i
     li t6, 8
     addi t5, a1, -1
+    mul t5, t5, t6 # t5 = 8 * (taille - 1)
+else1:
+    addi t0, t0, 8
 while:
-    bge t0, t5, fin_while
+    bge t0, t5, tri_nain_superopt_debut_epilogue
 
     # Preparation de &tab[i]
-    mul t2, t6, t0
-    add t2, t2, a0 # t2 = &tab[i] = tab + 8*i
+    add t2, a0, t0 # t2 = &tab[i] = tab + 8*i
 
     ld t3, 0(t2) # t3 = tab[i]
     ld t4, 1*8(t2) # t4 = tab[i + 1]
 
     /* if (tab[i] > tab[i+1]) */
     ble t3, t4, else1
+
     sd t4, 0(t2) # tab[i] = tab[i + 1]
     sd t3, 1*8(t2) # tab[i + 1] = tmp
     
     /* if (i > 0) */
     blez t0, while
-    addi t0, t0, -1
+    addi t0, t0, -8
     j while
-else1:
-    addi t0, t0, 1
-    j while
-fin_while:
 tri_nain_superopt_debut_epilogue:
     ret
