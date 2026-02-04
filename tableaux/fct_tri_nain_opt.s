@@ -25,12 +25,15 @@ void tri_nain(int64_t tab[], uint64_t taille)
    des variables temporaires.  */
 /* DEBUT DU CONTEXTE
 Fonction :
-    tri_nain : feuille
+    tri_nain_opt : feuille
 Contexte :
     tab     : registre a0
     taille  : registre a1
     i       : registre t0
     tmp     : registre t1
+    &tab[i] : registre t2
+    tab[i]  : registre t3
+    tab[i+1]: registre t4
 FIN DU CONTEXTE */
 tri_nain_opt:
 tri_nain_opt_fin_prologue:
@@ -42,21 +45,17 @@ while:
     # Preparation de tab[i]
     li t2, 8
     mul t2, t2, t0
-    add t2, t2, a0 # t2 = tab + 8*i
+    add t2, t2, a0 # t2 = &tab[i] = tab + 8*i
     ld t3, 0(t2) # t3 = tab[i]
 
-    # Preparation de tab[i + 1]
-    li t4, 8
-    mul t4, t4, t0
-    addi t4, t4, 8
-    add t4, t4, a0 # t4 = tab + 8*(i + 1)
-    ld t5, 0(t4) # t5 = tab[i + 1]
+    # # Preparation de tab[i + 1]
+    ld t4, 1*8(t2) # t4 = tab[i + 1]
 
     /* if (tab[i] > tab[i+1]) */
-    ble t3, t5, else1
+    ble t3, t4, else1
     mv t1, t3 # tmp = tab[i]
-    sd t5, 0(t2) # tab[i] = tab[i + 1]
-    sd t1, 0(t4) # tab[i + 1] = tmp
+    sd t4, 0(t2) # tab[i] = tab[i + 1]
+    sd t1, 1*8(t2) # tab[i + 1] = tmp
     
     /* if (i > 0) */
     blez t0, else2
@@ -70,3 +69,4 @@ else1:
 fin_while:
 tri_nain_opt_debut_epilogue:
     ret
+    
