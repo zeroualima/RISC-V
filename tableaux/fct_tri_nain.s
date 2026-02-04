@@ -40,21 +40,26 @@ while:
     li t2, 8
     mul t2, t2, t0
     add t2, t2, a0 # t2 = tab + 8*i
-    ld t3, 0(t2) # t3 = tab[i]
 
     # Preparation de tab[i + 1]
     li t4, 8
     mul t4, t4, t0
     addi t4, t4, 8
     add t4, t4, a0 # t4 = tab + 8*(i + 1)
-    ld t5, 0(t4) # t5 = tab[i + 1]
 
     /* if (tab[i] > tab[i+1]) */
-    ble t3, t5, else1
     ld t3, 0(t2) # t3 = tab[i]
-    mv t1, t3 # tmp = tab[i]
     ld t5, 0(t4) # t5 = tab[i + 1]
-    sd t5, 0(t2) # tab[i] = tab[i + 1]
+    ble t3, t5, else1
+
+     # tmp = tab[i]
+    ld t1, 0(t2)
+
+    # tab[i] = tab[i+1]
+    ld t5, 0(t4)
+    sd t5, 0(t2)
+
+    # tab[i+1] = tmp
     sd t1, 0(t4) # tab[i + 1] = tmp
     
     /* if (i > 0) */
