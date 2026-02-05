@@ -41,9 +41,9 @@ affichage_debut_epilogue:
 
 
 /*
-void modification(int64_t entier, char *p, struct structure_t *ps)
+void modification(int64_t e, char *p, struct structure_t *ps)
 {
-    ps->entier = entier;
+    ps->entier = e;
     ps->ptr = p;
 }
 */
