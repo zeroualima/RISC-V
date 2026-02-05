@@ -36,6 +36,6 @@ while:
     sd t1, 0*8(a0) # *l = suiv;
     j while
 fin_while:
-    sd t1, 0*8(a0) # *l = res;
+    sd t0, 0*8(a0) # *l = res;
 inverse_liste_debut_epilogue:
     ret
