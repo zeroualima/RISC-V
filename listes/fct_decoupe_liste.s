@@ -50,8 +50,31 @@ decoupe_liste_fin_prologue:
     sd t0, 0*8(a2) # *l2 = &fictif2;
 while:
     beq a0, zero, fin_while
-    
+    ld t0, 0*8(a0) # t0 = l->val
+    li t1, 2
+    rem t1, t0, t1 # t1 = l->val % 2
+    li t0, 1
+    bne t1, t0, else
+    ld t0, 0*8(a1) # t0 = *l1
+    sd a0, 1*8(t0) # (*l1)->suiv = l;
+    sd a0, 0*8(a1) # *l1 = l;
+    j fin_if
+else:
+    ld t0, 0*8(a2) # t0 = *l2
+    sd a0, 1*8(t0) # (*l2)->suiv = l;
+    sd a0, 0*8(a2) # *l2 = l;
+fin_if:
+    ld a0, 1*8(a0) # l = l->suiv;
+    j while
 fin_while:
+    ld t0, 0*8(a1) # t0 = *l1
+    sd zero, 1*8(t0) # (*l1)->suiv = NULL;
+    ld t0, 0*8(a2) # t0 = *l2
+    sd zero, 1*8(t0) # (*l2)->suiv = NULL;
+    ld t0, 1*8(sp) # t0 = fictif1.suiv
+    sd t0, 0*8(a1) # *l1 = fictif1.suiv;
+    ld t0, 3*8(sp) # t0 = fictif2.suiv
+    sd t0, 0*8(a2) # *l2 = fictif2.suiv;
 decoupe_liste_debut_epilogue:
     addi sp, sp, 4*8
     ret
