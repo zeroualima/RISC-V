@@ -43,6 +43,15 @@ Contexte :
   fictif1.val   : pile *(sp+0)   # champ de type (int64_t)
 FIN DU CONTEXTE */
 decoupe_liste:
+    addi sp, sp, -4*8
 decoupe_liste_fin_prologue:
+    sd sp, 0*8(a1) # *l1 = &fictif1;
+    addi t0, sp, 16
+    sd t0, 0*8(a2) # *l2 = &fictif2;
+while:
+    beq a0, zero, fin_while
+    
+fin_while:
 decoupe_liste_debut_epilogue:
+    addi sp, sp, 4*8
     ret
