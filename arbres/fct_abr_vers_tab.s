@@ -19,14 +19,15 @@ void abr_vers_tab(struct noeud_t *abr)
 Fonction :
     abr_vers_tab : non feuille
 Contexte :
-    ra : pile *(sp+8)
-    abr : pile *(sp+0); registre a0
+    ra : pile *(sp+16)
+    abr : pile *(sp+8); registre a0
+    fd : pile *(sp+0)
     ptr : mémoire
 FIN DU CONTEXTE */
 abr_vers_tab:
-    addi sp, sp, -2*8
-    sd ra, 1*8(sp)
-    sd a0, 0*8(sp)
+    addi sp, sp, -3*8
+    sd ra, 2*8(sp)
+    sd a0, 1*8(sp)
 abr_vers_tab_fin_prologue:
     beqz a0, abr_vers_tab_debut_epilogue
 
@@ -36,7 +37,7 @@ abr_vers_tab_fin_prologue:
 
     jal abr_vers_tab # abr_vers_tab(abr->fg);
 
-    ld a0, 0*8(sp) # a0 = abr
+    ld a0, 1*8(sp) # a0 = abr
     ld t0, 0*8(a0) # t0 = abr->val
     ld t1, ptr # t1 = ptr
     sd t0, 0*8(t1) # *ptr = abr->val;
@@ -45,7 +46,7 @@ abr_vers_tab_fin_prologue:
     la t2, ptr
     sd t1, 0(t2) # ptr++;
 
-    ld a0, 0*8(sp) # a0 = abr
+    ld a0, 1*8(sp) # a0 = abr
     addi t3, a0, 16 # t3 = &(abr->fd)
     ld t3, 0*8(t3) # t3 = abr->fd
     jal free # free(abr);
@@ -53,8 +54,8 @@ abr_vers_tab_fin_prologue:
     mv a0, t3
     jal abr_vers_tab
 abr_vers_tab_debut_epilogue:
-    ld ra, 1*8(sp)
-    addi sp, sp, 2*8
+    ld ra, 2*8(sp)
+    addi sp, sp, 3*8
     ret
 
     .data
