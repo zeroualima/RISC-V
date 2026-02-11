@@ -19,9 +19,9 @@ bool palin(const char *ch)
 Fonction :
     palin : non feuille
 Contexte :
-    ra : pile *(sp+3)
-    ch : pile *(sp+2); registre a0
-    inf : pile *(sp+1)
+    ra : pile *(sp+24)
+    ch : pile *(sp+16); registre a0
+    inf : pile *(sp+8)
     sup : pile *(sp+0)
 FIN DU CONTEXTE */
 palin:
