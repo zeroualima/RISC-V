@@ -19,6 +19,7 @@ Fonction :
     abr_est_present_tail_call : feuille
 Contexte :
     val : registre a0
+    abr : registre a1
 FIN DU CONTEXTE */
 abr_est_present_tail_call:
 abr_est_present_tail_call_fin_prologue:
