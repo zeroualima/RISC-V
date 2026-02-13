@@ -24,7 +24,6 @@ Contexte :
     # hash : registre t0
     # c : registre t1
 FIN DU CONTEXTE */
-
     .text
     .globl hash_hash
     .type  hash_hash, @function
@@ -37,7 +36,7 @@ while:
 # In brief : c will contain *key, but key will become key++
 # ATTENTION : the condition (c = *key++) is equivalent to ((c = *key++) != 0)
     lbu t1, 0*8(a0) # t1 = *key
-    addi a0, a0, 8 # a0 = key++
+    addi a0, a0, 1 # a0 = key++
     beqz t1, fin_while
     slli t2, t0, 5 # t2 = hash << 5
     add t2, t2, t0 # t2 = ((hash << 5) + hash)
