@@ -42,13 +42,13 @@ abr_vers_tab_fin_prologue:
     ld t1, ptr # t1 = ptr
     sd t0, 0*8(t1) # *ptr = abr->val;
 
-    addi t1, t1, 8
+    addi t1, t1, 8 # on ajoute 8 bytes = 64 bits, car c'est la taille qu'on veut sauter
     la t2, ptr
     sd t1, 0(t2) # ptr++;
 
     ld a0, 1*8(sp) # a0 = abr
     addi t3, a0, 16 # t3 = &(abr->fd)
-    ld t3, 0*8(t3) # t3 = abr->fd
+    ld t3, 0*8(t3) # t3 = abr->fd # IL FAUT LE METTRE SUR LA PILE PLUTOT QUE DANS t3 AVANT APPEL DE free(abr)
     jal free # free(abr);
 
     mv a0, t3
