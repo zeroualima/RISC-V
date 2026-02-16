@@ -43,14 +43,12 @@ hash_insert_fin_prologue:
     sd a0, 1*8(sp) # on stocke &e
 
     ld a0, 2*8(sp) # a0 = h
-    ld a0, 0*8(a0) # a0 = &&table
-    # ld a0, 0*8(a0) # a0 = &table
+    ld a0, 0*8(a0) # a0 = h->table
     ld t2, 0*8(sp) # t2 = index
-    li t0, 8
-    mul t2, t2, t0 # t2 = index * 8
-    add a0, a0, t2 # a0 = &table + index * 8
+    slli t0, t0, 8
+    add a0, a0, t0 # a0 = h->table + index * 8 = &table[index]
     ld t0, 0*8(a0) # t0 = h->table[index]
-    ld t1, 1*8(sp) # t1 = &e
+    ld t1, 1*8(sp) # t1 = e
     sd t0, 0*8(t1) # e->next = h->table[index];
 
     ld a0, 3*8(sp) # a0 = key

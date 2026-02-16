@@ -17,8 +17,8 @@ Fonction :
 Contexte :
     h : registre a0; pile *(sp+8)
     key : registre a1; pile *(sp+16)
-    ra : pile *(sp+24)
-    e : registre t0; pile *(sp+0)
+    # ra : pile *(sp+24)
+    # e : registre t0; pile *(sp+0)
 FIN DU CONTEXTE */
 
     .globl hash_lookup
