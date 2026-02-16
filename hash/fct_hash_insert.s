@@ -14,7 +14,7 @@ void hash_insert(htable_t *h, char *key, void *data)
 Fonction :
     hash_insert : non feuille
 Contexte :
-    ra : pile *(sp+40)
+    # ra : pile *(sp+40)
     h : registre a0; pile *(sp+16)
     key : registre a1; pile *(sp+24)
     data : registre a2; pile *(sp+32)
