@@ -40,13 +40,13 @@ hash_insert_fin_prologue:
     # sizeof entry_t = 3*8 bytes, 3 pointers
     li a0, 3*8
     jal malloc # entry_t *e = malloc(sizeof entry_t);
-    sd a0, 1*8(sp) # on stocke &e
+    sd a0, 1*8(sp) # on stocke e
 
     ld a0, 2*8(sp) # a0 = h
     ld a0, 0*8(a0) # a0 = h->table
     ld t2, 0*8(sp) # t2 = index
-    slli t0, t0, 8
-    add a0, a0, t0 # a0 = h->table + index * 8 = &table[index]
+    slli t2, t2, 8
+    add a0, a0, t2 # a0 = h->table + index * 8 = &table[index]
     ld t0, 0*8(a0) # t0 = h->table[index]
     ld t1, 1*8(sp) # t1 = e
     sd t0, 0*8(t1) # e->next = h->table[index];
@@ -61,10 +61,10 @@ hash_insert_fin_prologue:
     sd t0, 2*8(t1) # e->data = data;
 
     ld a0, 2*8(sp) # a0 = h
+    ld a0, 0*8(a0) # a0 = h->table
     ld t2, 0*8(sp) # t2 = index
-    li t0, 8
-    mul t2, t2, t0 # t2 = index * 8
-    add a0, a0, t2 # a0 = h + index * 8
+    slli t2, t2, 3 # t2 = index * 8
+    add a0, a0, t2 # a0 = h->table + index * 8
     ld t1, 1*8(sp) # t1 = e
     sd t1, 0*8(a0) # h->table[index] = e;
 hash_insert_debut_epilogue:
